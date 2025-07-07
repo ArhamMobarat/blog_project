@@ -1,0 +1,34 @@
+<%- include("partials/header.ejs") %>
+
+
+
+<h1> Arham's Blog Posts </h1>
+
+<form action="/add" method="POST">
+  <input type="submit" value="Create New Blog Post">
+</form>
+<% if (locals.blogs){ %>
+<ul>
+  <% blogs.forEach((blog)=>{%>
+  <li>
+    <%= blog["time"] %>
+    <br>
+    <%= blog["title"] %>
+    <% const blog_data = JSON.stringify(blog) %>
+    <form action="/edit" method="post">
+      <input type="hidden" name="blog-post" value="<%= blog_data %>">
+      <button type="submit">Edit</button>
+    </form>
+    <form action="/delete" method="post">
+      <input type="hidden" name="blog-post" value="<%= blog_data %>">
+      <button type="submit">Delete</button>
+    </form>
+
+  </li>
+  <% }) %>  
+</ul>
+<% } %>
+
+
+
+<%- include("partials/footer.ejs") %>

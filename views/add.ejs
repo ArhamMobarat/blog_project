@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs") %>
+
+  <form action="/submit" method="POST">
+    <input type="text" name="title" placeholder="Title"><br>
+    <textarea name="content" rows="5" cols="50"></textarea><br>
+
+    <% const now = new Date().toLocaleString('en-GB', { hour12: false }); %>
+
+    <input type="hidden" name="time" value="<%=now%>">
+    <!-- <label for="image">Select Image:</label> -->
+    <!-- <input type="file" name="image" id="image" accept="image/*" required>  enctype="multipart/form-data" -->
+    <input type="submit" value="OK">
+  </form>
+
+<%- include("partials/footer.ejs") %>
