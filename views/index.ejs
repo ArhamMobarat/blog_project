@@ -2,32 +2,95 @@
 
 
 
-<h1> Arham's Blog Posts </h1>
 
-<form action="/add" method="POST">
-  <input type="submit" value="Create New Blog Post">
-</form>
-<% if (locals.blogs){ %>
-<ul>
-  <% blogs.forEach((blog)=>{%>
+
+
+  <!-- Bootstrap here -->
+
+      <div class="m-3">
+        <h1 class="my-3"> Arham's Blog Posts </h1>
+
+        <form action="/add" method="POST">
+          <input type="submit" value="Create New Blog Post" class="btn btn-secondary">
+        </form>
+      </div>
+      
+
+      <% if (locals.blogs){ %>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% blogs.forEach((blog)=>{%>
+        <% const blog_data = JSON.stringify(blog) %>
+        <div class="col">
+          
+          <div class="card shadow-sm"> <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top"
+              height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%"
+              xmlns="http://www.w3.org/2000/svg">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">صورة
+                مصغرة</text>
+            </svg>
+            <div class="card-body">
+              <p class="card-text">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;"><%= blog["title"] %></font>
+                </font>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group"> 
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary"> -->
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">
+                        <form action="/edit" method="post">
+                          <input type="hidden" name="blog-post" value="<%= blog_data %>">
+                          <button type="submit" class="mx-2 btn btn-secondary">Edit</button>
+                        </form>
+                      </font>
+                    </font>
+                  <!-- </button>  -->
+                   <!-- <button type="button" class="btn btn-sm btn-outline-secondary"> -->
+                    <font style="vertical-align: inherit;">
+                      <font style="vertical-align: inherit;">
+                        <form action="/delete" method="post">
+                          <input type="hidden" name="blog-post" value="<%= blog_data %>">
+                          <button type="submit" class=" mx-2 btn btn-secondary">Delete</button>
+                        </form>
+                      </font>
+                    </font>
+                  <!-- </button>  -->
+                </div> <small class="text-body-secondary">
+                  <font style="vertical-align: inherit;">
+                    <font style="vertical-align: inherit;"><%= blog["time"] %></font>
+                  </font>
+                </small>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+
+  <!-- Bootstrap ends here -->
+  <!-- <%# blogs.forEach((blog)=>{%>
   <li>
-    <%= blog["time"] %>
+    <%#= blog["time"] %>
     <br>
-    <%= blog["title"] %>
-    <% const blog_data = JSON.stringify(blog) %>
+    <%#= blog["title"] %>
+    <%# const blog_data = JSON.stringify(blog) %>
     <form action="/edit" method="post">
-      <input type="hidden" name="blog-post" value="<%= blog_data %>">
+      <input type="hidden" name="blog-post" value="<%#= blog_data %>">
       <button type="submit">Edit</button>
     </form>
     <form action="/delete" method="post">
-      <input type="hidden" name="blog-post" value="<%= blog_data %>">
+      <input type="hidden" name="blog-post" value="<%#= blog_data %>">
       <button type="submit">Delete</button>
     </form>
 
-  </li>
-  <% }) %>  
-</ul>
-<% } %>
+  </li> -->
+
+
 
 
 
